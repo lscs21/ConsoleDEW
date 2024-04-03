@@ -91,18 +91,75 @@ The second column must contain the accumulated values of the recorded observatio
 The first line of the file must contain the strings: ["date, totalcases"]
 Make sure that the database is properly stored in the subdirectory: Files --> Dataset
 ```
+##### example file 
+
+```bash
+date, totalcases
+3/1/2020,1
+3/2/2020,2
+3/3/2020,2
+3/4/2020,3
+3/5/2020,8
+3/6/2020,13
+3/7/2020,19
+3/8/2020,25
+3/9/2020,25
+3/10/2020,34
+3/11/2020,52
+3/12/2020,77
+3/13/2020,151
+3/14/2020,151
+3/15/2020,200
+3/16/2020,234
+3/17/2020,347
+3/18/2020,531
+3/19/2020,643
+....
+```
+
+##### File name:
+There is no rule for file naming. However, we recommend that it be a short, easy-to-understand name.
+
+Example: Covid_TotalCases_Brazil.csv
+
+**Attention**: This same file name must be used, in its full form, with extension (.csv), within the PerformBestParametersAnalysis() function as well as in the runDEW() function
+
 
 #### 2. Performing deeplearnig:
+
+For the system to function, it is mandatory that the process of discovering the best parameters is carried out.
+
+This process involves iterating regressions with the Richards function to determine the best parameters.
+
+The parameters that can be changed are:
+
+###### DataSetFileName........: Complete name of dataser file, with extension (.csv). Example: "Covid_TotalCases_Brazil.csv"
+
+###### MaxChunckSize..........: Maximum sife for chuck data
+
+###### MaxWaveOffset..........: Maximum sife for waves offset
+
+###### MaxMovingAverageIndex..: Maximum sife for Moving Average Index 
+
+run:
 
 ```bash
 PerformBestParametersAnalysis.ipynb
 ```
+
 This function will generate a file containing the best parameters for the data that will be analyzed in the subdirectory: 
 
 - Files
   - BestParameters
 
-#### 3. Running the DEW script locally:
+#### 3. Running the DEW script:
+
+This step will check the file produced in the previous step and select the best possible parameters for data analysis.
+
+The parameters that can be changed are:
+
+###### FileName........: Complete name of dataser file, with extension (.csv). Example: "Covid_TotalCases_Brazil.csv"
+###### GeneralPredictiveCapacityInDays.: Future data prediction target
 
 ```bash
 PerformDEW.ipynb
